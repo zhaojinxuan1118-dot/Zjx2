@@ -1,0 +1,7 @@
+{
+  "name": "LunaFlow - 女性健康与周期助手",
+  "description": "一款现代、温馨且治愈的女性健康管理应用。提供经期追踪、健康数据监测、心情记录以及AI智能健康洞察功能。",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

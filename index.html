@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>LunaFlow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                bg: '#EFEEEE', // Neumorphic Base Color (Keep as fallback)
+                text: '#4A5568',
+                subtext: '#A0AEC0',
+                pink: '#E4AEC5', // Desaturated Pink for Soft UI
+                pinkDark: '#D689A8',
+                mint: '#A7D7C5', // Soft Mint
+                mintDark: '#7FB6A1',
+                shadowLight: '#FFFFFF',
+                shadowDark: '#D1D9E6'
+              }
+            },
+            fontFamily: {
+              sans: ['Nunito', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
+              heading: ['Nunito', 'PingFang SC', 'sans-serif'],
+            },
+            boxShadow: {
+              'neu-flat': '6px 6px 12px #D1D9E6, -6px -6px 12px #FFFFFF',
+              'neu-pressed': 'inset 6px 6px 12px #D1D9E6, inset -6px -6px 12px #FFFFFF',
+              'neu-sm': '3px 3px 6px #D1D9E6, -3px -3px 6px #FFFFFF',
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #F5F7FA; /* Lighter background for glass effect */
+        color: #4A5568;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* Neumorphism Utility Classes (Legacy support) */
+      .neu-flat {
+        background: #EFEEEE;
+        box-shadow: 6px 6px 12px #D1D9E6, -6px -6px 12px #FFFFFF;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.4);
+      }
+      
+      .neu-pressed {
+        background: #EFEEEE;
+        box-shadow: inset 5px 5px 10px #D1D9E6, inset -5px -5px 10px #FFFFFF;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .neu-btn {
+        background: #EFEEEE;
+        box-shadow: 5px 5px 10px #D1D9E6, -5px -5px 10px #FFFFFF;
+        border-radius: 50px;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4A5568;
+      }
+      
+      .neu-btn:active {
+        box-shadow: inset 4px 4px 8px #D1D9E6, inset -4px -4px 8px #FFFFFF;
+        transform: scale(0.98);
+      }
+
+      .neu-icon-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #EFEEEE;
+        box-shadow: 5px 5px 10px #D1D9E6, -5px -5px 10px #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        color: #4A5568;
+      }
+      
+      .neu-icon-btn:active, .neu-icon-btn.active {
+        box-shadow: inset 3px 3px 6px #D1D9E6, inset -3px -3px 6px #FFFFFF;
+        color: #E4AEC5;
+      }
+
+      /* Glassmorphism Utility Classes */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 30px;
+      }
+      
+      .glass-card {
+        background: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        border-radius: 24px;
+      }
+
+      .glass-btn {
+        background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 100%);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 12px rgba(167, 180, 204, 0.2);
+        color: #4A5568;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .glass-btn:active {
+        background: rgba(255, 255, 255, 0.5);
+        transform: scale(0.98);
+      }
+
+      .glass-input {
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+        transition: all 0.2s;
+      }
+      .glass-input:focus-within {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: #E4AEC5;
+        box-shadow: 0 0 0 2px rgba(228, 174, 197, 0.2);
+      }
+
+      .fade-in {
+        animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "recharts": "https://esm.sh/recharts@^3.5.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
