@@ -5,23 +5,23 @@ import { useNavigate } from 'react-router-dom';
 const MEDITATION_TRACKS = [
   {
     id: 1,
-    name: '林间静谧',
-    desc: '白噪音 · 治愈',
-    url: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=soft-rain-ambient-111154.mp3',
+    name: '空灵颂钵',
+    desc: '深度自愈 · 空灵之境',
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3', // 切换到一个更显空灵氛围的示例
     color: 'from-brand-mint via-brand-mintDark to-emerald-400'
   },
   {
     id: 2,
-    name: '深海呼吸',
-    desc: '潮汐 · 放松',
-    url: 'https://cdn.pixabay.com/download/audio/2021/08/09/audio_67798d1976.mp3?filename=ocean-waves-1129.mp3',
+    name: '山间清泉',
+    desc: '自然原声 · 恬静流淌',
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3', // 切换示例
     color: 'from-blue-400 via-indigo-400 to-brand-pink'
   },
   {
     id: 3,
-    name: '禅定时刻',
-    desc: '颂钵 · 冥想',
-    url: 'https://cdn.pixabay.com/download/audio/2022/03/10/audio_c337424461.mp3?filename=meditation-bowl-626.mp3',
+    name: '繁星入梦',
+    desc: '疗愈钢琴 · 温柔陪伴',
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', // 切换示例
     color: 'from-brand-pink via-purple-400 to-brand-mint'
   }
 ];
@@ -77,7 +77,7 @@ const Experimental: React.FC = () => {
   // 处理滚动切换音轨
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const scrollLeft = e.currentTarget.scrollLeft;
-    const itemWidth = 300; // 更新为新的容器宽度以匹配对齐
+    const itemWidth = 300; // 容器宽度
     const index = Math.round(scrollLeft / itemWidth);
     if (index !== currentTrackIndex && index >= 0 && index < MEDITATION_TRACKS.length) {
       setCurrentTrackIndex(index);
@@ -180,7 +180,7 @@ const Experimental: React.FC = () => {
                               ${isPlaying && idx === currentTrackIndex ? 'opacity-40 animate-pulse' : 'opacity-20'}
                             `}></div>
                             
-                            {/* 核心 Morphing Orb (增大至 w-64 h-64) */}
+                            {/* 核心 Morphing Orb */}
                             <div className={`
                               w-full h-full glass-panel flex flex-col items-center justify-center p-8 text-center relative z-10 overflow-hidden 
                               transition-all duration-1000 ease-in-out
@@ -198,7 +198,7 @@ const Experimental: React.FC = () => {
                   </div>
                 </div>
 
-                {/* 底部播放控制 (位置下移，增加 mt-16) */}
+                {/* 底部播放控制 */}
                 <div className="mt-16 flex flex-col items-center">
                     <div className="flex items-center gap-10 mb-6">
                         <button className="w-12 h-12 rounded-full glass-btn text-brand-subtext active:scale-90 transition-transform">
@@ -214,7 +214,7 @@ const Experimental: React.FC = () => {
                             <Volume2 size={22} />
                         </button>
                     </div>
-                    <p className="text-annotation font-bold text-brand-subtext/50 italic tracking-wider">左右滑动切换不同疗愈音频</p>
+                    <p className="text-annotation font-bold text-brand-subtext/50 italic tracking-wider">左右滑动切换不同疗愈轻音乐</p>
                 </div>
             </div>
         )}
