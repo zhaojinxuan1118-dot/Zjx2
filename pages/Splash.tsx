@@ -18,10 +18,10 @@ const Splash: React.FC = () => {
       <div className="neu-flat w-24 h-24 rounded-full flex items-center justify-center mb-8 animate-bounce">
         <Heart className="text-brand-pinkDark w-10 h-10 fill-current" />
       </div>
-      <h1 className="text-3xl font-heading font-extrabold text-brand-text fade-in">
+      <h1 className="text-main-title font-heading font-extrabold text-brand-text fade-in">
         LunaFlow
       </h1>
-      <p className="text-brand-subtext text-xs font-bold mt-3 tracking-[0.3em] uppercase fade-in">
+      <p className="text-brand-subtext text-annotation font-bold mt-3 tracking-[0.3em] uppercase fade-in">
         呵护 · 陪伴 · 成长
       </p>
     </div>

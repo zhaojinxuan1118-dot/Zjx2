@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { Mail, Lock, User, ChevronRight } from 'lucide-react';
 
 const Auth: React.FC = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
 
   const handleAuth = () => {
-    // In a real app, validate and authenticate here.
+    // 模拟登录/注册成功后的跳转
     if (isLogin) {
       navigate('/home');
     } else {
@@ -16,76 +16,79 @@ const Auth: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F7FA] flex flex-col items-center justify-center px-8 relative overflow-hidden">
-      
-      {/* 
-        Glassmorphism Background Elements 
-        Using large blurred circles to create depth behind the glass
-      */}
-      <div className="absolute top-[-10%] right-[-20%] w-[300px] h-[300px] bg-brand-pink rounded-full mix-blend-multiply filter blur-[80px] opacity-60 animate-pulse"></div>
-      <div className="absolute top-[20%] left-[-20%] w-[250px] h-[250px] bg-brand-mint rounded-full mix-blend-multiply filter blur-[80px] opacity-60"></div>
-      <div className="absolute bottom-[-10%] right-[10%] w-[300px] h-[300px] bg-purple-200 rounded-full mix-blend-multiply filter blur-[80px] opacity-50"></div>
-
-      {/* Main Glass Panel */}
-      <div className="glass-panel w-full max-w-sm p-8 z-10 flex flex-col items-center fade-in">
+    <div className="min-h-screen bg-brand-bg flex items-center justify-center px-8 relative overflow-hidden">
+      {/* 核心新拟态卡片容器 - 匹配参考图比例 */}
+      <div className="neu-flat w-full max-w-[320px] rounded-[48px] py-14 px-8 flex flex-col items-center animate-in fade-in zoom-in duration-700">
           
-          {/* Logo Area */}
-          <div className="mb-8 flex flex-col items-center">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-white/80 to-white/20 flex items-center justify-center mb-4 text-brand-pinkDark shadow-lg border border-white/50">
-                <Heart size={36} fill="currentColor" />
-            </div>
-            <h1 className="text-3xl font-heading font-extrabold text-brand-text">LunaFlow</h1>
-            <p className="text-sm font-bold text-brand-subtext tracking-[0.2em] uppercase mt-2">
-                {isLogin ? '欢迎回来' : '开启旅程'}
+          {/* 头像区域 - 对应参考图中的褐色圆环标识 */}
+          <div className="mb-6">
+              <div className="w-[88px] h-[88px] rounded-full neu-flat flex items-center justify-center p-1 border border-white/40">
+                  <div className="w-full h-full rounded-full border-[3px] border-[#4A3F35] flex items-center justify-center text-[#4A3F35]">
+                      <User size={42} strokeWidth={1.5} />
+                  </div>
+              </div>
+          </div>
+
+          {/* 标题区域 - 匹配参考图字体粗细与颜色 */}
+          <div className="mb-12 text-center">
+            <h1 className="text-[28px] font-heading font-extrabold text-[#4A3F35] tracking-tight leading-tight">
+                LunaFlow
+            </h1>
+            <p className="text-[14px] font-bold text-[#A69689] mt-1 opacity-80">
+                {isLogin ? '欢迎回来' : '新用户注册'}
             </p>
           </div>
 
-          {/* Form Container */}
+          {/* 表单输入区域 */}
           <div className="w-full space-y-5">
               
               {!isLogin && (
-                  <div className="glass-input px-5 py-4 flex items-center gap-3 animate-in slide-in-from-bottom-2">
-                      <User size={20} className="text-brand-subtext" />
+                  <div className="neu-pressed h-[58px] rounded-full px-6 flex items-center gap-4 transition-all">
+                      <User size={20} className="text-[#4A3F35] shrink-0" strokeWidth={1.5} />
                       <input 
                         type="text" 
-                        placeholder="您的昵称"
-                        className="bg-transparent outline-none border-none flex-1 text-base font-bold text-brand-text placeholder-brand-subtext/60"
+                        placeholder="用户名"
+                        className="bg-transparent outline-none border-none flex-1 text-body-text font-bold text-[#4A3F35] placeholder-[#A69689]/60"
                       />
                   </div>
               )}
 
-              <div className="glass-input px-5 py-4 flex items-center gap-3">
-                  <Mail size={20} className="text-brand-subtext" />
+              <div className="neu-pressed h-[58px] rounded-full px-6 flex items-center gap-4 transition-all">
+                  <Mail size={20} className="text-[#4A3F35] shrink-0" strokeWidth={1.5} />
                   <input 
                     type="email" 
                     placeholder="电子邮箱"
-                    className="bg-transparent outline-none border-none flex-1 text-base font-bold text-brand-text placeholder-brand-subtext/60"
+                    className="bg-transparent outline-none border-none flex-1 text-body-text font-bold text-[#4A3F35] placeholder-[#A69689]/60"
                   />
               </div>
 
-              <div className="glass-input px-5 py-4 flex items-center gap-3">
-                  <Lock size={20} className="text-brand-subtext" />
+              <div className="neu-pressed h-[58px] rounded-full px-6 flex items-center gap-4 transition-all">
+                  <Lock size={20} className="text-[#4A3F35] shrink-0" strokeWidth={1.5} />
                   <input 
                     type="password" 
                     placeholder="密码"
-                    className="bg-transparent outline-none border-none flex-1 text-base font-bold text-brand-text placeholder-brand-subtext/60"
+                    className="bg-transparent outline-none border-none flex-1 text-body-text font-bold text-[#4A3F35] placeholder-[#A69689]/60"
                   />
               </div>
 
+              {/* 登录按钮 - 匹配参考图样式 */}
               <button 
                 onClick={handleAuth}
-                className="w-full py-4 rounded-full bg-brand-pinkDark text-white text-lg font-bold shadow-lg shadow-brand-pink/30 hover:shadow-brand-pink/50 active:scale-[0.98] transition-all flex items-center justify-center gap-2 mt-6"
+                className="w-full h-[58px] mt-10 neu-btn rounded-full flex items-center justify-center gap-2 group active:scale-[0.97] transition-all bg-white/40"
               >
-                  {isLogin ? '登录' : '创建账号'}
-                  <ArrowRight size={20} />
+                  <span className="text-[17px] font-extrabold text-[#4A3F35]">
+                      {isLogin ? '登录' : '注册'}
+                  </span>
+                  <ChevronRight size={18} className="text-[#4A3F35] group-hover:translate-x-1 transition-transform" strokeWidth={3} />
               </button>
 
-              <div className="flex justify-center mt-4">
+              {/* 切换模式链接 */}
+              <div className="flex justify-center mt-6">
                   <button 
                     onClick={() => setIsLogin(!isLogin)}
-                    className="text-sm font-bold text-brand-subtext hover:text-brand-pinkDark transition-colors"
+                    className="text-[12px] font-bold text-[#A69689] hover:text-[#4A3F35] transition-colors"
                   >
-                      {isLogin ? '还没有账号？ 去注册' : '已有账号？ 去登录'}
+                      {isLogin ? '没有账号？去注册' : '已有账号？去登录'}
                   </button>
               </div>
           </div>

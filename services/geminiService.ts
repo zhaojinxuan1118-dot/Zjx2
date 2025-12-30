@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { CyclePhase, Recipe } from "../types";
 
@@ -9,7 +10,8 @@ const getClient = () => {
     console.warn("API Key not found. AI features will be simulated.");
     return null;
   }
-  return new GoogleGenAI({ apiKey });
+  // Initializing with a named parameter as required by @google/genai
+  return new GoogleGenAI({ apiKey: process.env.API_KEY });
 };
 
 export const generateDailyInsight = async (
@@ -40,8 +42,9 @@ export const generateDailyInsight = async (
   `;
 
   try {
+    // Using gemini-3-flash-preview for basic text tasks as per model guidelines
     const response = await client.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3-flash-preview',
       contents: { parts: [{ text: prompt }] },
     });
     return response.text || "今天也要好好爱自己，你很棒。";
@@ -65,8 +68,9 @@ export const generateCycleReportAnalysis = async (cycleLength: number, symptoms:
     `;
 
     try {
+        // Using gemini-3-flash-preview for general summary tasks
         const response = await client.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-3-flash-preview',
             contents: { parts: [{ text: prompt }] },
         });
         return response.text || "周期分析需要更多数据。";
@@ -99,8 +103,9 @@ export const generateDietPlan = async (season: string, phase: string, symptoms: 
     `;
 
     try {
+        // Using gemini-3-flash-preview for structured output tasks
         const response = await client.models.generateContent({
-             model: 'gemini-2.5-flash',
+             model: 'gemini-3-flash-preview',
              contents: { parts: [{ text: prompt }] },
              config: { 
                  responseMimeType: 'application/json',

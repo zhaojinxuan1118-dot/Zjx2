@@ -30,12 +30,12 @@ export const MOCK_BP_DATA = [
   { date: '日', systolic: 119, diastolic: 78 },
 ];
 
-// Pastel Palette
+// 颜色更新以匹配用户要求的草绿色
 export const PHASE_COLORS: Record<CyclePhase, string> = {
-  [CyclePhase.Menstrual]: '#F48FB1', // Pink
-  [CyclePhase.Follicular]: '#80CBC4', // Mint
-  [CyclePhase.Ovulation]: '#FFCC80', // Soft Orange
-  [CyclePhase.Luteal]: '#B39DDB', // Soft Purple
+  [CyclePhase.Menstrual]: '#FF8C5A', // 活力橙色
+  [CyclePhase.Follicular]: '#5D7B24', // 匹配更新后的草绿色 mintDark
+  [CyclePhase.Ovulation]: '#FFD900', // 亮黄色
+  [CyclePhase.Luteal]: '#C9BBCF',
 };
 
 export const PHASE_DESCRIPTIONS: Record<CyclePhase, string> = {

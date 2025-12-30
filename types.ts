@@ -1,3 +1,4 @@
+
 export enum CyclePhase {
   Menstrual = 'Menstrual',
   Follicular = 'Follicular',
@@ -56,4 +57,23 @@ export interface Recipe {
   ingredients: string[];
   benefit: string;
   calories: number;
+}
+
+// Added MealPlan and MetricCard interfaces to fix import errors in Insights.tsx
+export interface MealPlan {
+  id: string;
+  time: string;
+  name: string;
+  cal: string;
+  status: string;
+}
+
+export interface MetricCard {
+  id: string;
+  label: string;
+  value: string;
+  unit: string;
+  icon: any;
+  color: string;
+  subText: string;
 }

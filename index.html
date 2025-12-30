@@ -11,25 +11,32 @@
           extend: {
             colors: {
               brand: {
-                bg: '#EFEEEE', // Neumorphic Base Color (Keep as fallback)
-                text: '#4A5568',
-                subtext: '#A0AEC0',
-                pink: '#E4AEC5', // Desaturated Pink for Soft UI
-                pinkDark: '#D689A8',
-                mint: '#A7D7C5', // Soft Mint
-                mintDark: '#7FB6A1',
+                bg: '#FAF6F3', // 温暖的米白色背景
+                text: '#4A3F35', // 暖调灰棕色文字
+                subtext: '#9A8F85', // 暖调辅助文字
+                pink: '#E6B5A6', // 温暖的珊瑚粉
+                pinkDark: '#C98D7C',
+                mint: '#A2D149', // 鲜亮的草绿色
+                mintDark: '#8BB738', // 更新为更具活力的草绿色
                 shadowLight: '#FFFFFF',
-                shadowDark: '#D1D9E6'
+                shadowDark: '#E6DFD9' // 匹配暖背景的阴影色
               }
             },
             fontFamily: {
-              sans: ['Nunito', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
-              heading: ['Nunito', 'PingFang SC', 'sans-serif'],
+              sans: ['"Alibaba Health Font 2.0 CN"', '"PingFang SC"', 'Nunito', 'system-ui', '-apple-system', 'sans-serif'],
+              heading: ['"Alibaba Health Font 2.0 CN"', '"PingFang SC"', 'Nunito', 'sans-serif'],
+            },
+            fontSize: {
+              'main-title': ['24px', { lineHeight: '1.2' }],
+              'sub-title': ['20px', { lineHeight: '1.3' }],
+              'body-text': ['18px', { lineHeight: '1.5' }], // 上调至 18px
+              'annotation': ['15px', { lineHeight: '1.4' }], // 上调至 15px
+              '6xl': ['3.75rem', { lineHeight: '1' }],
             },
             boxShadow: {
-              'neu-flat': '6px 6px 12px #D1D9E6, -6px -6px 12px #FFFFFF',
-              'neu-pressed': 'inset 6px 6px 12px #D1D9E6, inset -6px -6px 12px #FFFFFF',
-              'neu-sm': '3px 3px 6px #D1D9E6, -3px -3px 6px #FFFFFF',
+              'neu-flat': '8px 8px 16px #E6DFD9, -8px -8px 16px #FFFFFF',
+              'neu-pressed': 'inset 6px 6px 12px #E6DFD9, inset -6px -6px 12px #FFFFFF',
+              'neu-sm': '4px 4px 8px #E6DFD9, -4px -4px 8px #FFFFFF',
             }
           }
         }
@@ -37,123 +44,95 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+      @font-face {
+        font-family: 'Alibaba Health Font 2.0 CN';
+        src: local('Alibaba Health Font 2.0 CN'), 
+             local('Alibaba Health Font 2.0'), 
+             local('AlibabaHealthFont2.0-Regular'), 
+             local('Alibaba Health Font 2.0 45 R');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Alibaba Health Font 2.0 CN';
+        src: local('Alibaba Health Font 2.0 CN Bold'), 
+             local('Alibaba Health Font 2.0 75 B'), 
+             local('AlibabaHealthFont2.0-Bold');
+        font-weight: bold;
+        font-style: normal;
+      }
       body {
-        background-color: #F5F7FA; /* Lighter background for glass effect */
-        color: #4A5568;
+        background-color: #FAF6F3;
+        color: #4A3F35;
         -webkit-tap-highlight-color: transparent;
+        font-family: "Alibaba Health Font 2.0 CN", "PingFang SC", Nunito, system-ui, -apple-system, sans-serif;
       }
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      
-      /* Neumorphism Utility Classes (Legacy support) */
+      input, button, textarea, select { font-family: inherit; }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       .neu-flat {
-        background: #EFEEEE;
-        box-shadow: 6px 6px 12px #D1D9E6, -6px -6px 12px #FFFFFF;
-        border-radius: 20px;
+        background: #FAF6F3;
+        box-shadow: 8px 8px 16px #E6DFD9, -8px -8px 16px #FFFFFF;
+        border-radius: 24px;
         border: 1px solid rgba(255,255,255,0.4);
       }
-      
       .neu-pressed {
-        background: #EFEEEE;
-        box-shadow: inset 5px 5px 10px #D1D9E6, inset -5px -5px 10px #FFFFFF;
-        border-radius: 20px;
+        background: #FAF6F3;
+        box-shadow: inset 5px 5px 10px #E6DFD9, inset -5px -5px 10px #FFFFFF;
+        border-radius: 24px;
         border: 1px solid rgba(255,255,255,0.1);
       }
-
       .neu-btn {
-        background: #EFEEEE;
-        box-shadow: 5px 5px 10px #D1D9E6, -5px -5px 10px #FFFFFF;
+        background: #FAF6F3;
+        box-shadow: 6px 6px 12px #E6DFD9, -6px -6px 12px #FFFFFF;
         border-radius: 50px;
         transition: all 0.2s ease;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #4A5568;
+        color: #4A3F35;
       }
-      
       .neu-btn:active {
-        box-shadow: inset 4px 4px 8px #D1D9E6, inset -4px -4px 8px #FFFFFF;
+        box-shadow: inset 4px 4px 8px #E6DFD9, inset -4px -4px 8px #FFFFFF;
         transform: scale(0.98);
       }
-
       .neu-icon-btn {
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: #EFEEEE;
-        box-shadow: 5px 5px 10px #D1D9E6, -5px -5px 10px #FFFFFF;
+        background: #FAF6F3;
+        box-shadow: 6px 6px 12px #E6DFD9, -6px -6px 12px #FFFFFF;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.2s ease;
-        color: #4A5568;
+        color: #4A3F35;
       }
-      
       .neu-icon-btn:active, .neu-icon-btn.active {
-        box-shadow: inset 3px 3px 6px #D1D9E6, inset -3px -3px 6px #FFFFFF;
-        color: #E4AEC5;
+        box-shadow: inset 3px 3px 6px #E6DFD9, inset -3px -3px 6px #FFFFFF;
+        color: #C98D7C;
       }
-
-      /* Glassmorphism Utility Classes */
       .glass-panel {
-        background: rgba(255, 255, 255, 0.45);
+        background: rgba(250, 246, 243, 0.6);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
         border: 1px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 8px 32px rgba(74, 63, 53, 0.05);
         border-radius: 30px;
       }
-      
       .glass-card {
-        background: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.45);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 16px rgba(74, 63, 53, 0.03);
         border-radius: 24px;
       }
-
-      .glass-btn {
-        background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 100%);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 4px 12px rgba(167, 180, 204, 0.2);
-        color: #4A5568;
-        border-radius: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
-      }
-      .glass-btn:active {
-        background: rgba(255, 255, 255, 0.5);
-        transform: scale(0.98);
-      }
-
-      .glass-input {
-        background: rgba(255, 255, 255, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 20px;
-        backdrop-filter: blur(4px);
-        transition: all 0.2s;
-      }
-      .glass-input:focus-within {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: #E4AEC5;
-        box-shadow: 0 0 0 2px rgba(228, 174, 197, 0.2);
-      }
-
       .fade-in {
-        animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       }
-      
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
+        from { opacity: 0; transform: translateY(12px); }
         to { opacity: 1; transform: translateY(0); }
       }
     </style>
@@ -173,6 +152,5 @@
 </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

@@ -1,133 +1,119 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Droplets, Activity, Calendar as CalendarIcon, Sun, Heart, MoreHorizontal, ScrollText, ChevronRight, User } from 'lucide-react';
+import { 
+  Menu, Calendar as CalendarIcon, ChevronRight, FlaskConical, 
+  Bell, Sparkles
+} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ReportDrawer from '../components/ReportDrawer';
 import { CyclePhase } from '../types';
-import { PHASE_COLORS, PHASE_DESCRIPTIONS } from '../constants';
+import { PHASE_DESCRIPTIONS } from '../constants';
 import { generateDailyInsight } from '../services/geminiService';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [insight, setInsight] = useState('AI 正在分析今日状态...');
+  const [insight, setInsight] = useState('AI 正在 analysis 今日状态...');
   
   const currentDay = 12;
-  const currentPhase = CyclePhase.Follicular;
-  const daysUntilNext = 16;
-  const phaseName = PHASE_DESCRIPTIONS[currentPhase];
+  const phase = CyclePhase.Follicular;
+  const phaseName = PHASE_DESCRIPTIONS[phase];
 
   useEffect(() => {
-    generateDailyInsight(currentPhase, [], ['活力']).then(setInsight);
-  }, [currentPhase]);
+    generateDailyInsight(phase, [], ['活力']).then(text => {
+      setInsight(text.replace(/\*/g, ''));
+    });
+  }, []);
 
   return (
-    <div className="min-h-screen px-6 pt-10 relative overflow-hidden bg-[#F5F7FA]">
+    <div className="min-h-screen px-[18px] pt-0 pb-32 relative overflow-hidden bg-brand-bg">
       <ReportDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       
-      {/* Ambient Background for Glass Effect */}
-      <div className="absolute top-[-5%] right-[-10%] w-[350px] h-[350px] bg-brand-mint/20 rounded-full blur-[80px] pointer-events-none"></div>
-      <div className="absolute top-[30%] left-[-15%] w-[300px] h-[300px] bg-brand-pink/20 rounded-full blur-[80px] pointer-events-none"></div>
-
       {/* Header */}
-      <div className="flex justify-between items-center mb-10 relative z-10">
-        <div 
-            onClick={() => navigate('/profile')}
-            className="glass-btn px-6 py-3 rounded-full flex items-center gap-4 cursor-pointer hover:bg-white/40 transition-colors"
-        >
-            <div className="w-8 h-8 rounded-full bg-brand-pink/30 flex items-center justify-center text-brand-pinkDark backdrop-blur-sm">
-                <User size={16} />
-            </div>
-            <span className="text-base font-bold text-brand-text/80">早上好, Luna</span>
+      <div className="h-[44px] flex justify-between items-center mb-8 relative z-10">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-white shadow-neu-sm flex items-center justify-center overflow-hidden p-0.5">
+             <div className="w-full h-full bg-gradient-to-br from-brand-pink/20 to-brand-mint/20 rounded-full"></div>
+          </div>
+          <div>
+            <p className="text-[15px] font-extrabold text-brand-text leading-none">Hi Luna</p>
+            <p className="text-[11px] font-bold text-brand-subtext mt-0.5">今日自愈指南</p>
+          </div>
         </div>
-        <button onClick={() => setDrawerOpen(true)} className="glass-btn w-12 h-12">
-            <Menu size={22} />
-        </button>
+        
+        <div className="flex gap-2">
+            <button onClick={() => navigate('/experimental')} className="neu-icon-btn w-10 h-10">
+                <FlaskConical size={18} />
+            </button>
+            <button onClick={() => setDrawerOpen(true)} className="neu-icon-btn w-10 h-10">
+                <Menu size={18} />
+            </button>
+        </div>
       </div>
 
-      {/* Main Cycle Dial - Glass Style */}
-      <div className="flex flex-col items-center justify-center mb-12 relative z-10">
-        <div className="relative w-64 h-64 flex items-center justify-center">
-             {/* Outer Glass Ring */}
-             <div className="absolute inset-0 rounded-full border border-white/60 bg-white/20 backdrop-blur-md shadow-lg"></div>
+      {/* Cycle Dial Container */}
+      <div className="flex flex-col items-center justify-center mb-10 relative z-10 fade-in">
+        <div className="relative w-72 h-72 flex items-center justify-center">
              
-             {/* Inner Ring */}
-             <div className="absolute inset-4 rounded-full border border-white/40 bg-white/10 flex items-center justify-center backdrop-blur-sm">
-                 {/* Center Content */}
-                 <div className="w-40 h-40 rounded-full bg-gradient-to-b from-white/80 to-white/40 shadow-inner flex flex-col items-center justify-center z-10 border border-white/60">
-                     <span className="text-sm font-bold text-brand-subtext mb-1 tracking-widest uppercase">Day</span>
-                     <span className="text-6xl font-heading font-extrabold text-brand-text drop-shadow-sm">{currentDay}</span>
-                     <span className="text-sm font-bold text-brand-pinkDark mt-2 bg-brand-pink/10 px-4 py-1.5 rounded-full border border-brand-pink/20">{phaseName}</span>
+             {/* 紧致的磨砂玻璃透光背景层 - 色值为活力橙 #FF8C5A */}
+             {/* 第一层：基础氛围橙色光晕 (#FF8C5A @ 30% 不透明度) */}
+             <div className="absolute w-[110%] h-[110%] bg-[#FF8C5A]/30 rounded-full blur-[60px] -z-10"></div>
+             {/* 第二层：核心发光点 (#FF8C5A @ 50% 不透明度) */}
+             <div className="absolute w-[85%] h-[85%] bg-[#FF8C5A]/50 rounded-full blur-[40px] -z-10 animate-pulse transition-all duration-1000"></div>
+
+             {/* Neumorphic Dial */}
+             <div className="absolute inset-4 rounded-full neu-flat"></div>
+             <div className="absolute inset-10 rounded-full neu-pressed flex items-center justify-center">
+                 <div className="w-40 h-40 rounded-full bg-brand-bg flex flex-col items-center justify-center z-10">
+                     <span className="text-annotation font-bold text-brand-subtext mb-1 tracking-widest uppercase">Cycle Day</span>
+                     <span className="text-6xl font-heading font-extrabold text-brand-text leading-none">{currentDay}</span>
+                     
+                     <div className="mt-5">
+                        <div 
+                          className="flex items-center gap-1.5 px-4 py-1.5 rounded-full shadow-md text-white font-extrabold text-[11px] transition-all" 
+                          style={{ backgroundColor: '#FF8C5A' }}
+                        >
+                            <Sparkles size={11} fill="currentColor" />
+                            {phaseName}
+                        </div>
+                     </div>
                  </div>
              </div>
         </div>
-        
-        <div className="mt-8 flex gap-4">
-            <div className="glass-card px-8 py-4 rounded-full flex items-center gap-3">
-                <CalendarIcon size={18} className="text-brand-text/60" />
-                <span className="text-sm font-bold text-brand-text">下次经期: <span className="text-brand-pinkDark">{daysUntilNext}天后</span></span>
-            </div>
-        </div>
       </div>
 
-      {/* Quick Stats Grid */}
-      <div className="grid grid-cols-2 gap-6 mb-8 relative z-10">
-         {/* Period Prediction Card */}
-         <div className="glass-card p-6 flex flex-col items-center justify-center aspect-[4/3] relative overflow-hidden group">
-             <div className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-brand-mint shadow-sm"></div>
-             <Droplets size={28} className="text-brand-mintDark mb-3" />
-             <h3 className="text-sm font-bold text-brand-subtext uppercase tracking-wider">经期预测</h3>
-             <p className="text-xl font-bold text-brand-text mt-1">准时</p>
-         </div>
-
-         {/* Body Status Card */}
-         <div className="glass-card p-6 flex flex-col items-center justify-center aspect-[4/3] relative overflow-hidden">
-             <div className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-brand-pink shadow-sm"></div>
-             <Activity size={28} className="text-brand-pinkDark mb-3" />
-             <h3 className="text-sm font-bold text-brand-subtext uppercase tracking-wider">今日状态</h3>
-             <p className="text-xl font-bold text-brand-text mt-1">活力充沛</p>
-         </div>
-      </div>
-
-      {/* Menopause Summary Entry Card */}
+      {/* Calendar Entry */}
       <div 
-        onClick={() => navigate('/menopause-summary')}
-        className="glass-card p-5 rounded-[24px] flex items-center justify-between mb-8 cursor-pointer active:scale-[0.98] transition-all relative z-10 group bg-gradient-to-r from-white/40 to-white/10"
+        onClick={() => navigate('/calendar')}
+        className="neu-flat p-6 mb-6 flex items-center justify-between cursor-pointer active:scale-[0.98] transition-all fade-in"
       >
-          <div className="flex items-center gap-4 relative z-10">
-              <div className="w-14 h-14 rounded-full bg-white/50 border border-white/60 text-purple-400 flex items-center justify-center shadow-sm">
-                  <ScrollText size={24} />
+          <div className="flex items-center gap-5">
+              <div 
+                className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner transition-colors"
+                style={{ backgroundColor: 'rgba(255, 140, 90, 0.12)', color: '#FF8C5A' }}
+              >
+                  <CalendarIcon size={24} />
               </div>
               <div>
-                  <h3 className="text-base font-bold text-brand-text">周期旅程总结</h3>
-                  <p className="text-xs text-brand-subtext font-bold mt-1">查看你的身体里程碑报告</p>
+                  <h3 className="text-body-text font-bold text-brand-text">生理期日历</h3>
+                  <p className="text-annotation text-brand-subtext font-bold">精准预测与健康洞察</p>
               </div>
           </div>
-          <div className="w-10 h-10 rounded-full bg-white/30 flex items-center justify-center text-brand-subtext">
-               <ChevronRight size={20} />
-          </div>
+          <ChevronRight size={20} className="text-brand-subtext" />
       </div>
 
-      {/* Large Insight Card */}
-      <div className="glass-card p-7 rounded-[30px] relative overflow-hidden mb-8 z-10 border-t border-l border-white/80">
-        <div className="flex items-start justify-between mb-5">
-            <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-400">
-                    <Sun size={22} />
-                </div>
-                <h3 className="font-bold text-lg text-brand-text">每日贴士</h3>
+      {/* AI Card - 修改边框为草绿色 */}
+      <div className="neu-flat p-6 relative overflow-hidden mb-6 border-l-[6px] border-brand-mint fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="flex items-center gap-2 mb-4">
+            <div className="p-2 bg-brand-mint/10 rounded-lg text-brand-mintDark">
+                <Bell size={20} />
             </div>
-            <MoreHorizontal size={24} className="text-brand-subtext" />
+            <h3 className="font-extrabold text-annotation uppercase tracking-wider text-brand-text/50">AI 智能调理建议</h3>
         </div>
-        
-        <p className="text-base text-brand-text/80 leading-relaxed font-medium pl-3 border-l-4 border-brand-pink/50">
+        <p className="text-[16px] text-brand-text font-bold leading-relaxed">
             {insight}
         </p>
-        
-        <div className="mt-6 flex gap-3">
-             <span className="px-4 py-1.5 rounded-full bg-white/40 border border-white/50 text-xs font-bold text-brand-subtext">#自爱</span>
-             <span className="px-4 py-1.5 rounded-full bg-white/40 border border-white/50 text-xs font-bold text-brand-subtext">#健康</span>
-        </div>
       </div>
+
     </div>
   );
 };

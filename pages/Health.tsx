@@ -43,15 +43,15 @@ const HealthPage: React.FC = () => {
   const currentRecipe = recipes[currentRecipeIndex];
 
   return (
-    <div className="min-h-screen px-6 pb-32 pt-10 bg-[#F5F7FA] relative overflow-hidden">
-       {/* Background Orbs */}
+    <div className="min-h-screen px-6 pb-32 pt-10 bg-brand-bg relative overflow-hidden">
+       {/* Background Orbs with Brand Colors */}
        <div className="absolute top-[20%] right-[-20%] w-[350px] h-[350px] bg-brand-mint/10 rounded-full blur-[80px] pointer-events-none"></div>
-       <div className="absolute bottom-[10%] left-[-10%] w-[300px] h-[300px] bg-blue-100/40 rounded-full blur-[80px] pointer-events-none"></div>
+       <div className="absolute bottom-[10%] left-[-10%] w-[300px] h-[300px] bg-brand-pink/10 rounded-full blur-[80px] pointer-events-none"></div>
 
        <div className="flex justify-between items-end mb-8 relative z-10">
          <div>
-            <h1 className="text-3xl font-heading font-extrabold text-brand-text">健康管理</h1>
-            <p className="text-sm text-brand-subtext font-bold mt-2">
+            <h1 className="text-main-title font-heading font-extrabold text-brand-text">健康管理</h1>
+            <p className="text-annotation text-brand-subtext font-bold mt-2">
                 {activeTab === 'diet' ? '经期饮食调理与营养' : '身体数据与运动建议'}
             </p>
          </div>
@@ -61,7 +61,7 @@ const HealthPage: React.FC = () => {
        <div className="glass-panel p-1.5 rounded-2xl flex mb-8 bg-white/40 relative z-10">
             <button 
                 onClick={() => setActiveTab('monitor')}
-                className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+                className={`flex-1 py-3 rounded-xl text-body-text font-bold transition-all duration-300 ${
                     activeTab === 'monitor' ? 'bg-white shadow-sm text-brand-text' : 'text-brand-subtext hover:text-brand-text/70'
                 }`}
             >
@@ -69,7 +69,7 @@ const HealthPage: React.FC = () => {
             </button>
             <button 
                 onClick={() => setActiveTab('exercise')}
-                className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+                className={`flex-1 py-3 rounded-xl text-body-text font-bold transition-all duration-300 ${
                     activeTab === 'exercise' ? 'bg-white shadow-sm text-brand-text' : 'text-brand-subtext hover:text-brand-text/70'
                 }`}
             >
@@ -77,7 +77,7 @@ const HealthPage: React.FC = () => {
             </button>
             <button 
                 onClick={() => setActiveTab('diet')}
-                className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+                className={`flex-1 py-3 rounded-xl text-body-text font-bold transition-all duration-300 ${
                     activeTab === 'diet' ? 'bg-white shadow-sm text-brand-text' : 'text-brand-subtext hover:text-brand-text/70'
                 }`}
             >
@@ -96,13 +96,13 @@ const HealthPage: React.FC = () => {
                                 <Moon size={22} />
                             </div>
                             <div>
-                                <h3 className="font-bold text-brand-text text-base">睡眠时长</h3>
-                                <p className="text-xs text-brand-subtext font-bold uppercase">过去7天</p>
+                                <h3 className="font-bold text-brand-text text-sub-title">睡眠时长</h3>
+                                <p className="text-annotation text-brand-subtext font-bold uppercase">过去7天</p>
                             </div>
                         </div>
                         <div className="text-right">
-                             <span className="text-2xl font-bold text-brand-text">7.5</span>
-                             <span className="text-sm text-brand-subtext ml-1">小时</span>
+                             <span className="text-main-title font-bold text-brand-text">7.5</span>
+                             <span className="text-body-text text-brand-subtext ml-1">小时</span>
                         </div>
                     </div>
                     <div className="h-44 w-full">
@@ -112,14 +112,15 @@ const HealthPage: React.FC = () => {
                                     cursor={{fill: 'transparent'}}
                                     contentStyle={{ 
                                         borderRadius: '16px', 
-                                        background: 'rgba(255, 255, 255, 0.8)', 
+                                        background: 'rgba(255, 255, 255, 0.9)', 
                                         backdropFilter: 'blur(10px)',
                                         border: '1px solid rgba(255, 255, 255, 0.5)',
-                                        boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
-                                        color: '#4A5568'
+                                        boxShadow: '0 4px 20px rgba(74, 63, 53, 0.1)',
+                                        color: '#4A3F35'
                                     }} 
                                 />
-                                <Bar dataKey="value" fill="#A7D7C5" radius={[4, 4, 4, 4]} barSize={14} />
+                                {/* 将柱状图颜色从 #BEC9A6 修改为 #A2D149 */}
+                                <Bar dataKey="value" fill="#A2D149" radius={[4, 4, 4, 4]} barSize={14} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
@@ -133,12 +134,12 @@ const HealthPage: React.FC = () => {
                                 <HeartPulse size={22} />
                             </div>
                             <div>
-                                <h3 className="font-bold text-brand-text text-base">血压趋势</h3>
-                                <p className="text-xs text-brand-subtext font-bold uppercase">每日监测</p>
+                                <h3 className="font-bold text-brand-text text-sub-title">血压趋势</h3>
+                                <p className="text-annotation text-brand-subtext font-bold uppercase">每日监测</p>
                             </div>
                         </div>
                         <div className="px-4 py-1.5 rounded-full bg-brand-pink/10 border border-brand-pink/20">
-                            <span className="text-xs font-bold text-brand-pinkDark">正常</span>
+                            <span className="text-annotation font-bold text-brand-pinkDark">正常</span>
                         </div>
                     </div>
                     <div className="h-44 w-full">
@@ -147,15 +148,16 @@ const HealthPage: React.FC = () => {
                                 <Tooltip 
                                     contentStyle={{ 
                                         borderRadius: '16px', 
-                                        background: 'rgba(255, 255, 255, 0.8)', 
+                                        background: 'rgba(255, 255, 255, 0.9)', 
                                         backdropFilter: 'blur(10px)',
                                         border: '1px solid rgba(255, 255, 255, 0.5)',
-                                        boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
-                                        color: '#4A5568'
+                                        boxShadow: '0 4px 20px rgba(74, 63, 53, 0.1)',
+                                        color: '#4A3F35'
                                     }} 
                                 />
-                                <Line type="monotone" dataKey="systolic" stroke="#E4AEC5" strokeWidth={3} dot={{r: 0}} activeDot={{r: 6, fill:'#E4AEC5', stroke: '#fff', strokeWidth: 2}} />
-                                <Line type="monotone" dataKey="diastolic" stroke="#A7D7C5" strokeWidth={3} dot={{r: 0}} />
+                                <Line type="monotone" dataKey="systolic" stroke="#E6B5A6" strokeWidth={3} dot={{r: 0}} activeDot={{r: 6, fill:'#E6B5A6', stroke: '#fff', strokeWidth: 2}} />
+                                {/* 将折线图辅助线颜色从 #BEC9A6 修改为 #A2D149 */}
+                                <Line type="monotone" dataKey="diastolic" stroke="#A2D149" strokeWidth={3} dot={{r: 0}} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
@@ -182,7 +184,7 @@ const HealthPage: React.FC = () => {
                             }`}
                         >
                             <div className="mb-2">{cat.icon}</div>
-                            <span className="text-sm font-bold">{cat.label}</span>
+                            <span className="text-body-text font-bold">{cat.label}</span>
                         </button>
                     ))}
                  </div>
@@ -192,8 +194,8 @@ const HealthPage: React.FC = () => {
                     {EXERCISE_DATA[exerciseCategory].map((item) => (
                         <div key={item.id} className="glass-card p-6 flex justify-between items-center rounded-[24px] bg-white/50">
                             <div>
-                                <h3 className="font-bold text-brand-text text-lg mb-1">{item.title}</h3>
-                                <div className="flex items-center gap-3 text-sm text-brand-subtext font-bold">
+                                <h3 className="font-bold text-brand-text text-sub-title mb-1">{item.title}</h3>
+                                <div className="flex items-center gap-3 text-body-text text-brand-subtext font-bold">
                                     <span className="bg-white/50 px-3 py-1 rounded-md border border-white/60">{item.duration}</span>
                                     <span>{item.calories} Kcal</span>
                                 </div>
@@ -212,36 +214,36 @@ const HealthPage: React.FC = () => {
                  {/* Settings: Season & Symptom */}
                  <div className="glass-panel p-5 rounded-[24px] flex justify-between items-center bg-white/40">
                      <div className="flex items-center gap-3" onClick={() => setDietSeason(prev => prev === '秋季' ? '冬季' : '秋季')}>
-                        <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 border border-orange-200">
+                        <div className="w-10 h-10 rounded-full bg-brand-pink/10 flex items-center justify-center text-brand-pinkDark border border-brand-pink/20">
                             <Leaf size={18} />
                         </div>
                         <div>
-                             <p className="text-xs text-brand-subtext font-bold uppercase">季节</p>
-                             <p className="text-sm font-bold text-brand-text">{dietSeason}</p>
+                             <p className="text-annotation text-brand-subtext font-bold uppercase">季节</p>
+                             <p className="text-body-text font-bold text-brand-text">{dietSeason}</p>
                         </div>
                      </div>
                      
                      <div className="h-10 w-[1px] bg-brand-subtext/20"></div>
                      
                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-brand-pinkDark border border-pink-200">
+                        <div className="w-10 h-10 rounded-full bg-brand-mint/10 flex items-center justify-center text-brand-mintDark border border-brand-mint/20">
                             <Droplets size={18} />
                         </div>
                         <div>
-                             <p className="text-xs text-brand-subtext font-bold uppercase">阶段</p>
-                             <p className="text-sm font-bold text-brand-text">月经期</p>
+                             <p className="text-annotation text-brand-subtext font-bold uppercase">阶段</p>
+                             <p className="text-body-text font-bold text-brand-text">月经期</p>
                         </div>
                      </div>
                      
                      <div className="h-10 w-[1px] bg-brand-subtext/20"></div>
 
                      <div className="flex items-center gap-3" onClick={() => setDietSymptom(prev => prev === '手脚冰凉' ? '痛经' : prev === '痛经' ? '腹胀' : '手脚冰凉')}>
-                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 border border-blue-200">
+                        <div className="w-10 h-10 rounded-full bg-brand-shadowDark/20 flex items-center justify-center text-brand-subtext border border-brand-shadowDark/30">
                             <Thermometer size={18} />
                         </div>
                         <div>
-                             <p className="text-xs text-brand-subtext font-bold uppercase">症状</p>
-                             <p className="text-sm font-bold text-brand-text">{dietSymptom}</p>
+                             <p className="text-annotation text-brand-subtext font-bold uppercase">症状</p>
+                             <p className="text-body-text font-bold text-brand-text">{dietSymptom}</p>
                         </div>
                      </div>
                  </div>
@@ -249,14 +251,14 @@ const HealthPage: React.FC = () => {
                  {/* Recipe Card with Pagination */}
                  {loadingDiet ? (
                      <div className="glass-card aspect-[3/4] rounded-[30px] flex items-center justify-center bg-white/50">
-                         <div className="text-brand-subtext text-base font-bold animate-pulse">
+                         <div className="text-brand-subtext text-body-text font-bold animate-pulse">
                              AI 正在生成食谱...
                          </div>
                      </div>
                  ) : (
                      currentRecipe && (
                          <div className="relative fade-in">
-                             {/* Meal Type Tabs (Pagination Indicator) */}
+                             {/* Meal Type Tabs */}
                              <div className="flex justify-center gap-2 mb-6">
                                 {recipes.map((r, idx) => (
                                     <div 
@@ -277,7 +279,7 @@ const HealthPage: React.FC = () => {
                                  </button>
 
                                  <div className="flex flex-col items-center flex-1">
-                                     <span className="px-5 py-2 rounded-full text-sm font-bold text-brand-pinkDark mb-8 bg-brand-pink/10 border border-brand-pink/20">
+                                     <span className="px-5 py-2 rounded-full text-body-text font-bold text-brand-pinkDark mb-8 bg-brand-pink/10 border border-brand-pink/20">
                                          {currentRecipe.mealType}
                                      </span>
                                      
@@ -285,22 +287,22 @@ const HealthPage: React.FC = () => {
                                          <Utensils size={56} />
                                      </div>
 
-                                     <h2 className="text-2xl font-heading font-extrabold text-brand-text mb-3 text-center">
+                                     <h2 className="text-main-title font-heading font-extrabold text-brand-text mb-3 text-center">
                                          {currentRecipe.name}
                                      </h2>
                                      
                                      <div className="flex items-center gap-3 mb-8">
-                                         <span className="text-sm font-bold text-brand-subtext">{currentRecipe.calories} Kcal</span>
+                                         <span className="text-body-text font-bold text-brand-subtext">{currentRecipe.calories} Kcal</span>
                                          <span className="w-1.5 h-1.5 bg-brand-subtext rounded-full"></span>
-                                         <span className="text-sm font-bold text-brand-mintDark">{currentRecipe.ingredients.length} 种食材</span>
+                                         <span className="text-body-text font-bold text-brand-mintDark">{currentRecipe.ingredients.length} 种食材</span>
                                      </div>
 
                                      <div className="w-full space-y-5 px-2">
                                          <div className="bg-white/40 p-5 rounded-2xl border border-white/60">
-                                             <h4 className="text-xs font-bold text-brand-subtext uppercase tracking-wider mb-3">食材</h4>
+                                             <h4 className="text-annotation font-bold text-brand-subtext uppercase tracking-wider mb-3">食材</h4>
                                              <div className="flex flex-wrap gap-2">
                                                  {currentRecipe.ingredients.map(ing => (
-                                                     <span key={ing} className="px-3 py-1.5 rounded-lg text-sm text-brand-text font-bold bg-white/70 shadow-sm">
+                                                     <span key={ing} className="px-3 py-1.5 rounded-lg text-body-text text-brand-text font-bold bg-white/70 shadow-sm">
                                                          {ing}
                                                      </span>
                                                  ))}
@@ -308,8 +310,8 @@ const HealthPage: React.FC = () => {
                                          </div>
 
                                          <div className="bg-brand-pink/10 p-5 rounded-2xl border border-brand-pink/20">
-                                             <h4 className="text-xs font-bold text-brand-pinkDark uppercase tracking-wider mb-2">功效</h4>
-                                             <p className="text-sm text-brand-text font-medium leading-relaxed">
+                                             <h4 className="text-annotation font-bold text-brand-pinkDark uppercase tracking-wider mb-2">功效</h4>
+                                             <p className="text-body-text text-brand-text font-medium leading-relaxed">
                                                  {currentRecipe.benefit}
                                              </p>
                                          </div>
@@ -324,7 +326,7 @@ const HealthPage: React.FC = () => {
                      <div className="w-12 h-12 rounded-full bg-brand-mint/20 flex items-center justify-center text-brand-mintDark shrink-0 border border-brand-mint/30">
                          <Leaf size={22} />
                      </div>
-                     <p className="text-sm text-brand-text font-medium leading-relaxed">
+                     <p className="text-body-text text-brand-text font-medium leading-relaxed">
                          {dietSeason}月经期饮食重点：<span className="font-bold text-brand-mintDark">温补、忌生冷、多铁质</span>。
                      </p>
                  </div>

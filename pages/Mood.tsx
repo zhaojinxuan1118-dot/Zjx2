@@ -62,10 +62,10 @@ const MoodPage: React.FC = () => {
         <button onClick={() => navigate('/home')} className="w-10 h-10 rounded-full flex items-center justify-center bg-white/50 border border-white/60">
             <X size={20} />
         </button>
-        <span className="font-bold text-xl text-brand-text">记录今日</span>
+        <span className="font-bold text-sub-title text-brand-text">记录今日</span>
         <button 
             onClick={handleSave}
-            className="px-6 py-2.5 rounded-full bg-brand-text text-white text-sm font-bold shadow-lg shadow-brand-text/20"
+            className="px-6 py-2.5 rounded-full bg-brand-text text-white text-body-text font-bold shadow-lg shadow-brand-text/20"
         >
             保存
         </button>
@@ -73,8 +73,8 @@ const MoodPage: React.FC = () => {
 
       {/* Date */}
       <div className="px-6 text-center mb-8 relative z-10">
-        <h2 className="text-3xl font-heading font-extrabold text-brand-text">感觉如何？</h2>
-        <p className="text-brand-subtext text-sm font-bold mt-2 uppercase tracking-widest">10月12日 • 卵泡期</p>
+        <h2 className="text-main-title font-heading font-extrabold text-brand-text">感觉如何？</h2>
+        <p className="text-brand-subtext text-annotation font-bold mt-2 uppercase tracking-widest">10月12日 • 卵泡期</p>
       </div>
 
       {/* Glass Tabs */}
@@ -88,7 +88,7 @@ const MoodPage: React.FC = () => {
                 <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id as any)}
-                    className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+                    className={`flex-1 py-3 rounded-xl text-body-text font-bold transition-all duration-300 ${
                         activeTab === tab.id 
                         ? 'bg-white shadow-sm text-brand-text' 
                         : 'text-brand-subtext hover:text-brand-text/70'
@@ -121,7 +121,7 @@ const MoodPage: React.FC = () => {
                             `}
                         >
                             <span className="text-4xl mb-3 filter drop-shadow-sm">{mood.icon}</span>
-                            <span className="text-sm font-bold">{mood.label}</span>
+                            <span className="text-body-text font-bold">{mood.label}</span>
                         </div>
                     )
                 })}
@@ -150,7 +150,7 @@ const MoodPage: React.FC = () => {
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-5">
                                     <span className="text-2xl">{symptom.icon}</span>
-                                    <span className={`text-base font-bold ${isSelected ? 'text-brand-text' : 'text-brand-subtext'}`}>
+                                    <span className={`text-body-text font-bold ${isSelected ? 'text-brand-text' : 'text-brand-subtext'}`}>
                                         {symptom.label}
                                     </span>
                                 </div>
@@ -183,7 +183,7 @@ const MoodPage: React.FC = () => {
                             value={newSymptomText}
                             onChange={(e) => setNewSymptomText(e.target.value)}
                             placeholder="输入症状..."
-                            className="flex-1 bg-transparent border-none outline-none px-4 text-base font-bold text-brand-text"
+                            className="flex-1 bg-transparent border-none outline-none px-4 text-body-text font-bold text-brand-text"
                         />
                         <button onClick={addCustomSymptom} className="w-12 h-12 rounded-full flex items-center justify-center bg-brand-mint text-white">
                             <Check size={20} />
@@ -192,7 +192,7 @@ const MoodPage: React.FC = () => {
                 ) : (
                     <button 
                         onClick={() => setIsAddingSymptom(true)}
-                        className="w-full py-4 rounded-[24px] border-2 border-dashed border-brand-subtext/20 text-brand-subtext font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:border-brand-pinkDark hover:text-brand-pinkDark transition-colors bg-white/20"
+                        className="w-full py-4 rounded-[24px] border-2 border-dashed border-brand-subtext/20 text-brand-subtext font-bold text-body-text uppercase tracking-wider flex items-center justify-center gap-2 hover:border-brand-pinkDark hover:text-brand-pinkDark transition-colors bg-white/20"
                     >
                         <Plus size={20} /> 添加自定义
                     </button>
@@ -207,14 +207,14 @@ const MoodPage: React.FC = () => {
                     <div className="w-24 h-24 rounded-full flex items-center justify-center text-brand-pinkDark mb-8 bg-pink-50 border border-pink-100 shadow-inner">
                         <Droplets size={40} />
                     </div>
-                    <h3 className="font-bold text-lg text-brand-text mb-8">经期流量</h3>
+                    <h3 className="font-bold text-sub-title text-brand-text mb-8">经期流量</h3>
                     
                     <div className="flex gap-4 w-full">
                         {['少量', '中等', '大量'].map((level) => (
                             <button
                                 key={level}
                                 onClick={() => setFlowLevel(level)}
-                                className={`flex-1 py-4 rounded-2xl text-sm font-bold transition-all border ${
+                                className={`flex-1 py-4 rounded-2xl text-body-text font-bold transition-all border ${
                                     flowLevel === level 
                                     ? 'bg-brand-text text-white border-brand-text shadow-lg' 
                                     : 'bg-white/50 text-brand-subtext border-white/60 hover:bg-white'
